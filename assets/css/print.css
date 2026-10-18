@@ -1,0 +1,64 @@
+/* ===== تنسيق الطباعة وملفات PDF (نص حقيقي قابل للتحديد والبحث) ===== */
+@page{
+  size:A4;
+  margin:18mm 16mm 20mm 16mm;
+  @bottom-center{content:counter(page) " / " counter(pages);font-family:"Plex Arabic",sans-serif;font-size:9pt;color:#6f7a89}
+  @top-center{content:"مركز تعلّم الاستثمار المتوافق مع الشريعة — نسخة شخصية";font-family:"Plex Arabic",sans-serif;font-size:8pt;color:#9aa3ae}
+}
+@page cover{
+  margin:0;
+  @bottom-center{content:none}
+  @top-center{content:none}
+}
+
+@media print{
+  :root{--bg:#fff;--surface:#fff;--surface-2:#f7f5f0;--ink:#151b24;--ink-2:#3c4654;--ink-3:#5f6977;--line:#d9d3c7;--line-2:#cfc7b8;
+        --brand:#1f5f63;--brand-soft:#e6f0ef;--accent-soft:#f5ede0;--info:#2f5d8a;--info-soft:#e8eff7;--warn:#7a4f10;--warn-soft:#f7eedf;
+        --risk:#8f3b32;--risk-soft:#f6e6e3;--muted-soft:#efede8;--violet:#4f3f80;--violet-soft:#eeeaf6;color-scheme:light}
+  html,body{background:#fff !important;color:var(--ink)}
+  body{font-size:10.5pt;line-height:1.75}
+  .app,.toast,.pop,dialog,.scrim{display:none !important}
+  #print-root{display:block !important}
+  a{color:var(--brand);text-decoration:underline}
+  .pr-cover{page:cover;height:297mm;width:210mm;display:flex;flex-direction:column;justify-content:space-between;padding:34mm 24mm 26mm;background:#f5f3ee;break-after:page;position:relative}
+  .pr-cover .band{position:absolute;inset-inline-start:0;top:0;bottom:0;width:12mm;background:#1f5f63}
+  .pr-cover h1{font-size:28pt;line-height:1.35;margin:0 0 8mm;color:#1c2430}
+  .pr-cover .sub{font-size:13pt;color:#465263;max-width:140mm}
+  .pr-cover .meta{font-size:10pt;color:#465263;border-top:1px solid #d3ccbe;padding-top:6mm}
+  .pr-cover .meta div{margin-bottom:2mm}
+  .pr-cover .disc{font-size:9pt;color:#6f7a89;margin-top:6mm;max-width:150mm}
+  .pr-toc{break-after:page}
+  .pr-toc h2{font-size:16pt;margin-top:0}
+  .pr-toc ol{padding-inline-start:18px}
+  .pr-toc li{margin:3px 0;font-size:10.5pt}
+  .pr-toc li li{font-size:9.5pt;color:var(--ink-2)}
+  .pr-chapter{break-before:page}
+  .pr-chapter:first-of-type{break-before:auto}
+  .pr-chapter > h1{font-size:19pt;line-height:1.35;margin:0 0 4mm;padding-bottom:3mm;border-bottom:2px solid var(--brand);color:var(--ink)}
+  .pr-section{break-inside:auto}
+  h2{font-size:14pt;margin:7mm 0 2.5mm;break-after:avoid}
+  h3{font-size:11.5pt;margin:5mm 0 2mm;break-after:avoid}
+  p,li{orphans:3;widows:3}
+  .card,.callout,.quote,.q,figure,tr,.flow{break-inside:avoid}
+  .card{box-shadow:none;border:1px solid var(--line);padding:4mm 5mm;border-radius:3mm}
+  .grid{display:block}
+  .grid > *{margin-bottom:3mm}
+  .table-wrap{overflow:visible;border:0;border-radius:0}
+  table{font-size:9pt;border:1px solid var(--line)}
+  thead{display:table-header-group}
+  th{background:#f0ede6 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;white-space:normal}
+  th,td{padding:2mm 2.5mm}
+  .badge,.callout,.quote,th,.b-verified,.b-prelim,.b-disputed,.b-unproven,.b-risk,.pr-cover,.pr-cover .band{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  details.acc{border:0;margin:0;box-shadow:none}
+  details.acc > summary{padding:0;margin:5mm 0 2mm;font-size:11.5pt}
+  details.acc > summary::after,details.acc > summary .sico{display:none}
+  details.acc .acc-body{padding:0;border:0}
+  .no-print,.lesson-actions,.lesson-nav,.toolbar,.chips,textarea,.quiz .opt{display:none !important}
+  .quiz .why{display:block !important}
+  .pr-answer{display:block !important;font-size:9.5pt;color:var(--ink-2)}
+  .ref{font-size:7.5pt}
+  .pr-reflist li{font-size:8.8pt;margin-bottom:2mm;break-inside:avoid}
+  .pr-reflist .u{direction:ltr;unicode-bidi:isolate;word-break:break-all;font-size:8pt}
+  .pr-footnote{font-size:8.5pt;color:var(--ink-3);border-top:1px solid var(--line);margin-top:6mm;padding-top:2mm}
+}
+.pr-answer{display:none}

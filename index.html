@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' file:; style-src 'self' 'unsafe-inline' file:; font-src 'self' file: data:; img-src 'self' file: data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<title>مركز البورصة الحلال</title>
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/print.css">
+<script>try{var t=localStorage.getItem('bh.theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="القائمة الرئيسية">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg></div>
+      <div><b>مركز البورصة الحلال</b><small>تعلّم وفحص</small></div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+  <div class="main">
+    <header class="topbar">
+      <button class="iconbtn menu-btn" id="menuBtn" aria-label="فتح القائمة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div class="search" role="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="ابحث: مصطلح، درس، رسالة، مرجع… (بالعربي أو English)" autocomplete="off" aria-label="بحث">
+        <kbd>/</kbd>
+        <div class="search-results" id="results" role="listbox"></div>
+      </div>
+      <button class="iconbtn" id="exportBtn" title="تصدير PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 12v6M9 15l3 3 3-3"/></svg><span class="lbl">تصدير PDF</span></button>
+      <button class="iconbtn" id="themeBtn" title="الوضع الفاتح / الداكن" aria-label="تبديل الوضع"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    </header>
+    <main class="content" id="view" tabindex="-1"></main>
+    <footer class="footer">موقع ثابت — لا يرسل أي بيانات لأي مكان. المحتوى تعليمي وليس فتوى ولا توصية بالشراء أو البيع. آخر تحديث للمحتوى: <span id="updated"></span></footer>
+  </div>
+</div>
+
+<div class="pop" id="pop" role="tooltip"></div>
+<div class="toast" id="toast" role="status"></div>
+
+<dialog id="exportDlg">
+  <div class="dlg-h"><h2>تصدير PDF / طباعة</h2></div>
+  <div class="dlg-b">
+    <div class="callout info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg><div>
+      <p>اختار الأجزاء اللي عايزها، واضغط «تجهيز وطباعة». هتفتح نافذة الطباعة: اختار <b>Save as PDF / حفظ كـ PDF</b>. الملف بيتعمل على جهازك بس، والنص فيه حقيقي (تقدر تحدده وتبحث فيه)، والروابط بتشتغل.</p>
+      <p>ملف الـ PDF بعد ما يتحفظ بيبقى نسخة مستقلة: أي تحديث في الموقع بعد كده مش هيظهر فيه.</p>
+    </div></div>
+    <div class="toolbar no-print"><button class="chip" id="selAll">اختيار الكل</button><button class="chip" id="selNone">إلغاء الكل</button><button class="chip" id="selCur">الصفحة الحالية فقط</button></div>
+    <div class="checklist" id="exportList"></div>
+    <label style="display:flex;gap:8px;margin-top:10px;align-items:center"><input type="checkbox" id="incNotes"> تضمين ملاحظاتي الشخصية في الملف (افتراضيًا لا)</label>
+  </div>
+  <div class="dlg-f"><button class="iconbtn" id="dlgCancel">إلغاء</button><button class="iconbtn primary" id="dlgPrint">تجهيز وطباعة</button></div>
+</dialog>
+
+<div id="print-root"></div>
+
+<script src="assets/js/data/refs.js"></script>
+<script src="assets/js/data/glossary.js"></script>
+<script src="assets/js/data/lessons.js"></script>
+<script src="assets/js/data/shariah.js"></script>
+<script src="assets/js/data/shariah_topics.js"></script>
+<script src="assets/js/data/sources.js"></script>
+<script src="assets/js/data/messages.js"></script>
+<script src="assets/js/data/messages_tg.js"></script>
+<script src="assets/js/data/products.js"></script>
+<script src="assets/js/data/cases.js"></script>
+<script src="assets/js/data/warnings.js"></script>
+<script src="assets/js/data/recs.js"></script>
+<script src="assets/js/data/privacy.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
